@@ -19,7 +19,26 @@ const writeFilePro = (file, data) => {
     });
 };
 
-readFilePro(`${__dirname}/dog.txt`)
+const getDogPic = async () => {
+    try {
+        const data = await readFilePro(`${__dirname}/dog.txt`);
+        console.log(`Breed: ${data}`);
+
+        const result = await superagent.get(`https://dog.ceo/api/breed/${data}/images/random`);
+        console.log(result.body.message);
+
+        await writeFilePro('dog-img.txt', result.body.message);
+        console.log('random dog imag save to file');
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+getDogPic();
+
+//Método Promesas
+
+/*readFilePro(`${__dirname}/dog.txt`)
     .then((result) => {
         console.log(`Breed: ${result}`);
         return superagent.get(`https://dog.ceo/api/breed/${result}/images/random`);
@@ -34,4 +53,4 @@ readFilePro(`${__dirname}/dog.txt`)
     })
     .catch((err) => {
         console.log(err);
-    });
+    });*/
