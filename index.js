@@ -37,14 +37,25 @@ const getDogPic = async () => {
     return '2: Ready !!!!';
 };
 
-console.log('1: Will get dog pics');
+(async () => {
+    try {
+        console.log('1: Will get dog pics');
+        const prom = await getDogPic()
+        console.log(prom);
+        console.log('3: Done getting dog pics');
+    } catch (error) {
+        console.log('Error !!!!!!');
+    }
+})()
+
+/*console.log('1: Will get dog pics');
 
 getDogPic().then((prom) => {
     console.log(prom);
     console.log('3: Done getting dog pics');
 }).catch(err=>{
-    console.log('Error');
-})
+    console.log('Error !!!!!!');
+})*/
 
 //Método Promesas
 
