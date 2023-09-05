@@ -31,10 +31,20 @@ const getDogPic = async () => {
         console.log('random dog imag save to file');
     } catch (error) {
         console.log(error);
+        throw(error);
     }
+
+    return '2: Ready !!!!';
 };
 
-getDogPic();
+console.log('1: Will get dog pics');
+
+getDogPic().then((prom) => {
+    console.log(prom);
+    console.log('3: Done getting dog pics');
+}).catch(err=>{
+    console.log('Error');
+})
 
 //Método Promesas
 
